@@ -13,7 +13,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: ./docker/nginx/Dockerfile
-          repo: nginx
+          repo: mogstagram-puma
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
@@ -35,7 +35,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: ./docker/rails/Dockerfile
-          repo: rails
+          repo: mogstagram-rails
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
