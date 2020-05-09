@@ -1,7 +1,29 @@
+
+
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
+  aws-cli: circleci/aws-cli@0.1.20
+
+jobs:
+  db-migrate:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+      - run:
+        name: "db migrate"
+        command: |
+          aws ecs run-task --region $AWS_REGION \
+            --cluster nginx-rails-app-cluster \
+            --task-definition nginx-rails-app \
+            --overrides file://docker/rails/run_task_db_migrate.json
+
 workflows:
   # Nginxのデプロイ
   nginx-deploy:
@@ -47,6 +69,6 @@ workflows:
           cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
           service-name: 'ecs-rails-service' #サービス名
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
-
-  
-#AWS_ECR_ACCOUNT_URL => ${アカウントID}.dkr.ecr.${リージョン}.amazonaws.com
+      - db_migrate:
+          requires:
+            - aws-ecr/deploy-service-update
