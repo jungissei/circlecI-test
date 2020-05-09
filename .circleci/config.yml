@@ -25,7 +25,7 @@ jobs:
       #         --task-definition nginx-rails-app \
       #         --overrides file://docker/rails/run_task_db_migrate.json
 
-workflows:
+# workflows:
   # Nginxのデプロイ
   # nginx-deploy:
   #   jobs:
@@ -70,4 +70,4 @@ workflows:
   #         cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
   #         service-name: 'ecs-rails-service' #サービス名
   #         container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
-      - build:
+      # - build:
