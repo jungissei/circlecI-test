@@ -16,13 +16,13 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run: echo "hello build job"
-      # - run:
-      #     name: "db migrate"
-      #     command: |
-      #       aws ecs run-task --region $AWS_REGION \
-      #         --cluster nginx-rails-app-cluster \
-      #         --task-definition nginx-rails-app \
-      #         --overrides file://docker/rails/run_task_db_migrate.json
+      - run:
+          name: "db migrate"
+          command: |
+            aws ecs run-task --region $AWS_REGION \
+              --cluster nginx-rails-app-cluster \
+              --task-definition nginx-rails-app \
+              --overrides file://docker/rails/run_task_db_migrate.json
 
 workflows:
   nginx-deploy:
@@ -67,4 +67,6 @@ workflows:
           cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
           service-name: 'ecs-rails-service' #サービス名
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
-      - build
+      - build:
+          requires:
+            - aws-ecs/deploy-service-update
