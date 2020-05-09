@@ -20,7 +20,9 @@ jobs:
           command: |
             aws ecs run-task --region $AWS_REGION \
               --cluster nginx-rails-app-cluster \
-              --task-definition nginx-rails-app
+              --task-definition nginx-rails-app \
+              --overrides file://docker/rails/run_task_db_migrate.json
+          working_directory: app
 
 # workflows:
 #   nginx-deploy:
