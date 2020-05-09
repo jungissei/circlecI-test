@@ -21,7 +21,7 @@ jobs:
             aws ecs run-task --region $AWS_REGION \
               --cluster nginx-rails-app-cluster \
               --task-definition nginx-rails-app \
-              --overrides "{\"containerOverrides\": [{\"name\": \"migrate\",\"command\": [\"rails\", \"db:migrate\"]}]}"
+              --overrides "{\"containerOverrides\": [{\"name\": \"rails\",\"command\": [\"rails\", \"db:migrate\"]}]}"
           working_directory: app
 
 # workflows:
