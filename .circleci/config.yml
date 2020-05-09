@@ -16,13 +16,13 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
-      - run:
-          name: "db migrate"
-          command: |
-            aws ecs run-task --region $AWS_REGION \
-              --cluster nginx-rails-app-cluster \
-              --task-definition nginx-rails-app \
-              --overrides file://docker/rails/run_task_db_migrate.json
+      # - run:
+      #     name: "db migrate"
+      #     command: |
+      #       aws ecs run-task --region $AWS_REGION \
+      #         --cluster nginx-rails-app-cluster \
+      #         --task-definition nginx-rails-app \
+      #         --overrides file://docker/rails/run_task_db_migrate.json
 
 workflows:
   # Nginxのデプロイ
