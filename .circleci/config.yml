@@ -70,5 +70,3 @@ workflows:
           service-name: 'ecs-rails-service' #サービス名
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
       - db_migrate:
-          requires:
-            - aws-ecr/deploy-service-update
