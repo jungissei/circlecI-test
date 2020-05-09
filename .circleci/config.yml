@@ -7,7 +7,7 @@ orbs:
   aws-cli: circleci/aws-cli@0.1.20
 
 jobs:
-  db-migrate:
+  db_migrate:
     docker:
       - image: circleci/python:3.7
     steps:
