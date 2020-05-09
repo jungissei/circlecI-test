@@ -8,8 +8,7 @@ orbs:
 
 jobs:
   db_migrate:
-    docker:
-      - image: circleci/python:3.7
+    executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/setup:
