@@ -8,4 +8,6 @@
 
 5.times.each do |i|
   Post.create(title: "test#{i + 1}")
+  Art.create(title: "test#{i + 1}")
+  Cup.create(title: "test#{i + 1}")
 end
