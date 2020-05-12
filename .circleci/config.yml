@@ -24,6 +24,7 @@ jobs:
               --overrides "{\"containerOverrides\": [{\"name\": \"rails\",\"command\": [\"rails\", \"db:migrate\"]}]}"
           working_directory: app
 
+
 # workflows:
 #   nginx-deploy:
 #     jobs:
