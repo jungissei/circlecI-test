@@ -4,13 +4,12 @@ services:
     build:
       context: .
       dockerfile: ./docker/rails/Dockerfile
-    command: bundle exec puma -C config/puma.rb 
+    command: bundle exec puma -C config/puma.rb
     ports:
       - '3000:3000'
     volumes:
       - .:/app
       - /var/tmp
-      # socketファイルの共有
       - sockets:/app/tmp/sockets
     tty: true
     depends_on:
@@ -26,7 +25,7 @@ services:
       - '3306:3306'
     volumes:
       - db_data:/var/lib/mysql
-    extends:  
+    extends:
       file: ./docker/mysql/password.yml
       service: password
   nginx:
@@ -35,10 +34,9 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     ports:
       - '80:80'
-      #socketファイルの共有
-    volumes: 
+    volumes:
       - sockets:/app/tmp/sockets
-    depends_on: 
+    depends_on:
       - app
 
 volumes:
