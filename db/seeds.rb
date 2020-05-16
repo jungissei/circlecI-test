@@ -10,4 +10,5 @@
   Post.create(title: "test#{i + 1}")
   Art.create(title: "test#{i + 1}")
   Cup.create(title: "test#{i + 1}")
+  Work.create(title: "test#{i + 1}")
 end
