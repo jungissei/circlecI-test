@@ -5,10 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-5.times.each do |i|
-  Post.create(title: "test#{i + 1}")
-  Art.create(title: "test#{i + 1}")
-  Cup.create(title: "test#{i + 1}")
-  Work.create(title: "test#{i + 1}")
-end
