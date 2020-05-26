@@ -31,6 +31,14 @@ jobs:
               --task-definition nginx-rails-app \
               --overrides '{"containerOverrides": [{"name": "rails","command": ["rails", "db:migrate"]}]}'
           working_directory: app
+      - run:
+          name: "assets:precompile"
+          command: |
+            aws ecs run-task --region $AWS_REGION \
+              --cluster $ECS_ARN \
+              --task-definition nginx-rails-app \
+              --overrides '{"containerOverrides": [{"name": "rails","command": ["rails", "assets:precompile"]}]}'
+          working_directory: app
 
 
 workflows:
