@@ -29,3 +29,5 @@ ADD . /app
 
 
 EXPOSE 3000
+
+RUN bundle exec rake assets:precompile
