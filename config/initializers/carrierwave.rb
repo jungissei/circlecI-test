@@ -10,7 +10,7 @@ unless Rails.env.development? || Rails.env.test?
     }
 
     config.fog_directory  = ENV['AWS_BUCKET_NAME']
-    config.asset_host = ENV['AWS_BUCKET_URL']
     config.cache_storage = :fog
+    config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" }
   end
 end
